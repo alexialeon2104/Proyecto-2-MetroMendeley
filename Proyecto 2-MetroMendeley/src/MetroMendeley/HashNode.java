@@ -13,8 +13,8 @@ package MetroMendeley;
  */
 public class HashNode<K, V>{
     
-    private K key;
-    private V value;
+    private K key; // Codigo a partir del Titulo del resumen
+    private V value; // Onjeto resumen
     private final int hashCode;
     private HashNode<K, V> next;
     

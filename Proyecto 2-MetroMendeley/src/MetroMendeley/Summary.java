@@ -9,12 +9,16 @@ package MetroMendeley;
  *
  * @author Rolando
  */
+
+
+
 public class Summary {
     
     private String title;
     private String[] authors;
     private String body;
     private String[] keywords;
+    private long key;
 
     public Summary(String title, String[] authors, String body, String[] keywords) {
         this.title = title;
@@ -23,8 +27,19 @@ public class Summary {
         this.keywords = keywords;
     }
     
-    
-    
+    public long transformTitle(){
+        long key;
+        key = 0; 
+        for (int j = 0; j < Math.min(10,this.getTitle().length()); j++){
+        key = key * 27 + (int) this.getTitle().charAt(j);
+        }
+        if (key<0)
+            key = -key;
+        return key;
+        
+    }
+   
+   
     //Getters and Setters
     public String getTitle() {
         return title;

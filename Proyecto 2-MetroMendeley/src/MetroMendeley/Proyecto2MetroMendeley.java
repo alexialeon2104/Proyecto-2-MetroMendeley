@@ -14,7 +14,15 @@ public class Proyecto2MetroMendeley {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        String[] autores = new String[2];
+        autores[0]= "Alexia";
+        autores[1] = "Rolando";
+        HashTable hasht = new HashTable();
+        
+        Summary resumen = new Summary("Ejemplo de Titulo", autores, "cuerpo del libro", autores);
+        System.out.println(resumen.transformTitle());
+        System.out.println(hasht.hashFunction(resumen.transformTitle()));
+        
     }
     
 }
