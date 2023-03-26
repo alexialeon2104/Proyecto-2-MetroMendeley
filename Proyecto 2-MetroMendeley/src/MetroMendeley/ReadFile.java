@@ -72,11 +72,14 @@ public class ReadFile {
                 
                 while ((line = br.readLine()) != null) {
                     if (!line.isEmpty()) {
-                       if (line.contains("Autores") || line.contains("Resumen") || line.contains("Palabras claves:") || line.contains("Palabras Claves:")) {
+                       if (line.contains("Autores") || line.contains("Resumen")) {
                             txt += "~" + "\n";
+                       
                         } else {
                             txt += line + "\n";
                         }
+                    } else {
+                        txt += "\n";
                     }
                 }
                 br.close();
@@ -92,8 +95,38 @@ public class ReadFile {
     
     public Summary readSummary(String txt) {
         
+        String[] split = txt.split("~");
+        //Título
+        String title = split[0];
         
-        return null;
+        String[] splitAuthors = split[1].split("\n");
+        //Autores
+        String[] authors = new String[splitAuthors.length - 1];
+        
+        int counter = 0;
+        for (int i = 1; i < splitAuthors.length; i++) {
+            authors[counter] = splitAuthors[i];
+            counter++;
+        }
+        
+        String[] bodySplit = split[2].split("\n\n");
+        //Body
+        String body = bodySplit[0];
+        
+        String keywordsSplit = bodySplit[1];
+        
+        if (keywordsSplit.contains("Palabras Claves: ")) {
+            keywordsSplit = keywordsSplit.replace("Palabras Claves: ", "");
+        } else {
+            keywordsSplit = keywordsSplit.replace("Palabras claves: ", "");
+        }
+        
+        //Keywords
+        String[] keywords = keywordsSplit.split(", ");
+
+        Summary summary = new Summary(title, authors, body, keywords);
+        
+        return summary;
     }
    
 }

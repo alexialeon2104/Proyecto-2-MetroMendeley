@@ -202,27 +202,28 @@ public class AddSummaryUI extends javax.swing.JFrame {
                 ReadFile nfile = new ReadFile();
 
                 String txt = nfile.readTxt(auxpath);
-
+                
+                nfile.readSummary(txt);
+                
                 String[] split = txt.split("~");
                 
-                String[] txtSplitWarehouses = split[1].split("\n");
-                String[] txtSplitRoutes = split[2].split("\n");
+                String[] txtSplitAuthors = split[1].split("\n");
+                String[] txtSplitBody = split[2].split("\n");
                 String normal = "";
                 
-                for (int i = 0; i < txtSplitWarehouses.length; i++) {
-                    if(txtSplitWarehouses[i].equals("")) {
-                       normal += "Almacenes;" + "\n"; 
+                normal += split[0];
+                for (int i = 0; i < txtSplitAuthors.length; i++) {
+                    if(txtSplitAuthors[i].equals("")) {
+                       normal += "Autores" + "\n"; 
                     }  else {
-                       normal += txtSplitWarehouses[i] + "\n"; 
+                       normal += txtSplitAuthors[i] + "\n"; 
                     }
                 }
                 
-                for (int i = 0; i < txtSplitRoutes.length; i++) {
-                    if(txtSplitRoutes[i].equals("")) {
-                       normal += "Rutas;" + "\n";
-                    }  else {
-                       normal += txtSplitRoutes[i] + "\n"; 
-                    }
+                txtSplitBody[0] = "\n" + "Resumen" + "\n";
+                normal += txtSplitBody[0];
+                for (int i = 1; i < txtSplitBody.length; i++) {
+                       normal += txtSplitBody[i] + "\n"; 
                     
                 }
                 txtArea.setText(normal);

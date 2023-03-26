@@ -42,6 +42,7 @@ public class MainUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Amazon.setFont(new java.awt.Font("Microsoft YaHei", 1, 36)); // NOI18N
@@ -108,7 +109,7 @@ public class MainUI extends javax.swing.JFrame {
     }//GEN-LAST:event_searchSummaryActionPerformed
 
     private void analyzeSummaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analyzeSummaryActionPerformed
-        
+        AnalyzeSummaryUI analyzeSummary = new AnalyzeSummaryUI(this);
     }//GEN-LAST:event_analyzeSummaryActionPerformed
 
     private void addSummaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSummaryActionPerformed
