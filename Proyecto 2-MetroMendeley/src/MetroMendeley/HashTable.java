@@ -34,6 +34,15 @@ public class HashTable<K, V> {
             bucketArray.addLast(null);
         }
     }
+    
+    public int hashFunction(long key){
+        double R = 0.618034;
+        double d;
+        int v;
+        d = R * key - Math.floor(R * key); // parte decimal
+        int index = (int) (this.capacity * d);
+        return index;
+    }
 
     public boolean isEmpty() {
         return getSize() == 0;
