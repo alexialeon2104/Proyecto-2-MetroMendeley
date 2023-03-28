@@ -203,7 +203,30 @@ public class LinkedList<T> {
         }
         return sList;
     }
+    
+    public T searchElement(T element) {
+        if (isEmpty()) {
+            JOptionPane.showMessageDialog(null, "The list is empty");
+            return null;
 
+        } else {
+            Nodo<T> pointer = getHead();
+            
+            while (pointer != null) {
+                if(pointer.getData() == element) {
+                    return pointer.getData();
+
+                }
+                pointer = pointer.getNext();
+            }
+        }
+        return null;
+    }
+    
+    public String searchAuthor(String author) {
+        return null;
+        
+    }
     public T getElement(int index) {
         if (isEmpty()) {
             return null;

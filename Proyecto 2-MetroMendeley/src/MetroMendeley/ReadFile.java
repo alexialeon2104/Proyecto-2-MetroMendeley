@@ -44,7 +44,6 @@ public class ReadFile {
             PrintWriter pw = new PrintWriter(new FileWriter(file, true));
             pw.append(txt);
             pw.close();
-            JOptionPane.showMessageDialog(null, "Se ha agregado esta información a la base de datos!");
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error: " + e);
@@ -74,7 +73,8 @@ public class ReadFile {
                     if (!line.isEmpty()) {
                        if (line.contains("Autores") || line.contains("Resumen")) {
                             txt += "~" + "\n";
-                       
+                        } else if (line.contains("Palabras claves:")) {
+                            txt += line.replace("Palabras claves:", "Palabras Claves:") + "\n";
                         } else {
                             txt += line + "\n";
                         }
@@ -83,7 +83,7 @@ public class ReadFile {
                     }
                 }
                 br.close();
-                JOptionPane.showMessageDialog(null, "Lectura exitosa");
+                
                 return txt; 
             }
  
@@ -96,24 +96,50 @@ public class ReadFile {
     public Summary readSummary(String txt) {
         
         String[] split = txt.split("~");
+        
+        if (split[0].contains("\n")) {
+            split[0] = split[0].replace("\n", "");
+        }
         //Título
         String title = split[0];
         
         String[] splitAuthors = split[1].split("\n");
         //Autores
-        String[] authors = new String[splitAuthors.length - 1];
+        LinkedList authors = new LinkedList();
         
-        int counter = 0;
-        for (int i = 1; i < splitAuthors.length; i++) {
-            authors[counter] = splitAuthors[i];
-            counter++;
+        for (int i = 0; i < splitAuthors.length; i++) {
+            if (!splitAuthors[i].equals("")) {
+                authors.addLast(splitAuthors[i]);
+            }
         }
         
-        String[] bodySplit = split[2].split("\n\n");
+        String[] bodySplit = null;
+        
+        
+        if (split[2].contains("\n\n")) {
+            bodySplit = split[2].split("\n\n");
+        
+        } else if (split[2].contains("\n\n\n")) {
+            bodySplit = split[2].split("\n\n\n");
+        } else {
+            String[] lineSplit = split[2].split("\n");
+            String bodyDefSplit = "";
+            for (int j = 0; j < lineSplit.length; j++) {
+                if (lineSplit[j].contains("Palabras")) {
+                    lineSplit[j] = lineSplit[j].replace("Palabras", "\n\nPalabras");
+                    
+                } 
+                bodyDefSplit += lineSplit[j];
+            }
+            bodySplit = bodyDefSplit.split("\n\n");
+                
+        }
+
         //Body
         String body = bodySplit[0];
-        
+
         String keywordsSplit = bodySplit[1];
+
         
         if (keywordsSplit.contains("Palabras Claves: ")) {
             keywordsSplit = keywordsSplit.replace("Palabras Claves: ", "");
@@ -122,7 +148,18 @@ public class ReadFile {
         }
         
         //Keywords
-        String[] keywords = keywordsSplit.split(", ");
+        LinkedList keywords = new LinkedList();
+        
+        String[] keywordsSplitted = keywordsSplit.split(", ");
+
+        for (int i = 0; i < keywordsSplitted.length; i++) {
+            if (!keywordsSplitted[i].equals("") || !keywordsSplitted[i].equals("\n")) {
+                if (keywordsSplitted[i].contains("\n")) {
+                    keywordsSplitted[i] = keywordsSplitted[i].replace("\n", "");
+                }
+                keywords.addLast(keywordsSplitted[i]);
+            }  
+        }
 
         Summary summary = new Summary(title, authors, body, keywords);
         

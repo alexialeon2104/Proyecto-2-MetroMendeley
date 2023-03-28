@@ -15,12 +15,12 @@ package MetroMendeley;
 public class Summary {
     
     private String title;
-    private String[] authors;
+    private LinkedList<String> authors;
     private String body;
-    private String[] keywords;
+    private LinkedList<String> keywords;
     private long key;
 
-    public Summary(String title, String[] authors, String body, String[] keywords) {
+    public Summary(String title, LinkedList authors, String body, LinkedList keywords) {
         this.title = title;
         this.authors = authors;
         this.body = body;
@@ -49,11 +49,11 @@ public class Summary {
         this.title = title;
     }
 
-    public String[] getAuthors() {
+    public LinkedList getAuthors() {
         return authors;
     }
 
-    public void setAuthors(String[] authors) {
+    public void setAuthors(LinkedList authors) {
         this.authors = authors;
     }
 
@@ -65,11 +65,11 @@ public class Summary {
         this.body = body;
     }
 
-    public String[] getKeywords() {
+    public LinkedList getKeywords() {
         return keywords;
     }
 
-    public void setKeywords(String[] keywords) {
+    public void setKeywords(LinkedList keywords) {
         this.keywords = keywords;
     }
     

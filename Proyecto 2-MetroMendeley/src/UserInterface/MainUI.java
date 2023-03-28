@@ -5,6 +5,10 @@
  */
 package UserInterface;
 
+import MetroMendeley.LinkedList;
+import MetroMendeley.ReadFile;
+import MetroMendeley.Summary;
+import java.io.File;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,7 +16,8 @@ import javax.swing.JOptionPane;
  * @author Rolando
  */
 public class MainUI extends javax.swing.JFrame {
-
+    
+    public static LinkedList summarysList = new LinkedList();
     /**
      * Creates new form MainUI
      */
@@ -20,6 +25,29 @@ public class MainUI extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        
+        //Lectura del archivo de texto de la base de datos
+        ReadFile nfile = new ReadFile();
+        
+        try {
+            String path = "test\\summarys.txt";
+            String txt = nfile.readTxt(path);
+            File file = new File(path);
+            if (!txt.isBlank()) {
+                String[] txtFinal = txt.split("¬");
+                
+                for (int i = 0; i < txtFinal.length-1; i++) {
+                    Summary summary = nfile.readSummary(txtFinal[i]);
+                    summarysList.addLast(summary);
+                }
+                     
+                } else {
+                JOptionPane.showMessageDialog(null, "La base de datos se encuentra vacía. Cargue un archivo para agregar información!"); 
+                }
+            
+        }catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al leer el archivo: " + e);
+        } 
     }
 
     /**
@@ -119,7 +147,7 @@ public class MainUI extends javax.swing.JFrame {
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         try {
-//            ReadFile nfile = new ReadFile();
+            ReadFile nfile = new ReadFile();
         
             JOptionPane.showMessageDialog(null, "Se ha guardado toda la información correctamente! Hasta luego!");
             System.exit(0);

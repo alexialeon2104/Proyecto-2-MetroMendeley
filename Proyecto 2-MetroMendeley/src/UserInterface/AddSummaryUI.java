@@ -76,11 +76,9 @@ public class AddSummaryUI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
-        showUpdates = new javax.swing.JButton();
         back = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         open = new javax.swing.JButton();
-        save = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -94,7 +92,7 @@ public class AddSummaryUI extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea1.setRows(5);
-        jTextArea1.setText("Instrucciones:\n -  Seleccione el boton Abrir para buscar un archivo de texto y \ncargarlo\n\n- Si desea guardar la información en su archivo de texto. \nPrimero presione \"Mostrar actualizaciones\"  para mostrar \ntoda la información y posteriormente presione \"Guardar\", \nal escoger el archivo en el que quiere guardar se actualizará \nel mismo");
+        jTextArea1.setText("Instrucciones:\n -  Seleccione el boton Abrir para buscar un archivo de texto y \ncargarlo");
         jScrollPane1.setViewportView(jTextArea1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 380, -1));
@@ -111,17 +109,6 @@ public class AddSummaryUI extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 153));
         jLabel2.setText("Texto cargado: ");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 120, -1));
-
-        showUpdates.setBackground(new java.awt.Color(255, 255, 153));
-        showUpdates.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
-        showUpdates.setForeground(new java.awt.Color(51, 51, 51));
-        showUpdates.setText("Mostrar actualizaciones");
-        showUpdates.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showUpdatesActionPerformed(evt);
-            }
-        });
-        jPanel1.add(showUpdates, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, 180, 30));
 
         back.setBackground(new java.awt.Color(204, 255, 255));
         back.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
@@ -150,17 +137,6 @@ public class AddSummaryUI extends javax.swing.JFrame {
         });
         jPanel1.add(open, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 80, 30));
 
-        save.setBackground(new java.awt.Color(255, 255, 153));
-        save.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
-        save.setForeground(new java.awt.Color(51, 51, 51));
-        save.setText("Guardar");
-        save.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveActionPerformed(evt);
-            }
-        });
-        jPanel1.add(save, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 80, 30));
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 440, 380));
 
         pack();
@@ -170,19 +146,6 @@ public class AddSummaryUI extends javax.swing.JFrame {
         this.setVisible(false);
         v1.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
-
-    private void showUpdatesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showUpdatesActionPerformed
-        try {
-            String total = "";
-//            ReadFile nfile = new ReadFile();
-
-            txtArea.setText(total);
-           
-            
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Se ha producido un error: " + e);
-        }
-    }//GEN-LAST:event_showUpdatesActionPerformed
 
     private void openActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openActionPerformed
         try {
@@ -228,16 +191,14 @@ public class AddSummaryUI extends javax.swing.JFrame {
                 }
                 txtArea.setText(normal);
                 nfile.appendTxt(normal);
+                
+                nfile.appendTxt("¬" + "\n");
                 JOptionPane.showMessageDialog(null, "Cargado exitoso"); 
             }
         } catch(Exception e) {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error en el cargado del archivo: " + e);
             }  
     }//GEN-LAST:event_openActionPerformed
-
-    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        this.guardarArchivo();
-    }//GEN-LAST:event_saveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -286,8 +247,6 @@ public class AddSummaryUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton open;
-    private javax.swing.JButton save;
-    private javax.swing.JButton showUpdates;
     private javax.swing.JTextArea txtArea;
     // End of variables declaration//GEN-END:variables
 }
