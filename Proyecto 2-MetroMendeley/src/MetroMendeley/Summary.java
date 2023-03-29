@@ -15,7 +15,7 @@ package MetroMendeley;
 public class Summary {
     
     private String title;
-    private LinkedList<String> authors;
+    private LinkedList<Author> authors;
     private String body;
     private LinkedList<String> keywords;
     private long key;
@@ -26,19 +26,26 @@ public class Summary {
         this.body = body;
         this.keywords = keywords;
     }
-    
-    public long transformTitle(){
-        long key;
-        key = 0; 
-        for (int j = 0; j < Math.min(10,this.getTitle().length()); j++){
-            key = key * 27 + (int) this.getTitle().charAt(j);
+       
+    public String displayAnalysis() {
+        String display = "";
+        
+        display += getTitle() + "\n\n";
+        display += "Autores: ";
+        
+        for (int i = 0; i < authors.getSize(); i++) {
+            display += authors.getElement(i).getName() + ", ";
         }
-        if (key<0)
-            key = -key;
-        return key;
+        display += "\n\n";
+        
+        for (int i = 0; i < keywords.getSize(); i++) {
+            display += keywords.getElement(i) + ": \n";
+        }
+        return display;
         
     }
-   
+    
+    
    
     //Getters and Setters
     public String getTitle() {

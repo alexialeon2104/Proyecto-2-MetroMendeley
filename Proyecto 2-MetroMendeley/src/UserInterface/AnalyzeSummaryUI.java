@@ -4,7 +4,10 @@
  */
 package UserInterface;
 
-
+import MetroMendeley.Summary;
+import static UserInterface.MainUI.hashTable;
+import static UserInterface.MainUI.summarysList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +28,14 @@ public class AnalyzeSummaryUI extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         
+        String[] shownSummarys = new String[summarysList.getSize()];
+        
+        for (int i = 0; i < summarysList.getSize(); i++) {
+            shownSummarys[i] = summarysList.getElement(i).getTitle();
+        }
+        
+        summarysShown.setListData(shownSummarys);
+       
     }
     
     /**
@@ -43,7 +54,7 @@ public class AnalyzeSummaryUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        summarysList = new javax.swing.JList<>();
+        summarysShown = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -84,14 +95,14 @@ public class AnalyzeSummaryUI extends javax.swing.JFrame {
         jLabel2.setText("Seleccione un resumen y luego presione el botón \"Analizar\"");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 400, 30));
 
-        summarysList.setBackground(new java.awt.Color(102, 102, 102));
-        summarysList.setForeground(new java.awt.Color(255, 255, 255));
-        summarysList.setModel(new javax.swing.AbstractListModel<String>() {
+        summarysShown.setBackground(new java.awt.Color(102, 102, 102));
+        summarysShown.setForeground(new java.awt.Color(255, 255, 255));
+        summarysShown.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(summarysList);
+        jScrollPane1.setViewportView(summarysShown);
 
         jScrollPane2.setViewportView(jScrollPane1);
 
@@ -108,6 +119,16 @@ public class AnalyzeSummaryUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void analyzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analyzeActionPerformed
+       try {
+           String selected = summarysShown.getSelectedValue();
+           
+           Summary summary = hashTable.get(selected);
+           
+           ShowAnalysisUI showAnalysis = new ShowAnalysisUI(this, summary);
+           
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Debe escoger uno de los resúmenes");
+        }
         
     }//GEN-LAST:event_analyzeActionPerformed
 
@@ -161,6 +182,6 @@ public class AnalyzeSummaryUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<String> summarysList;
+    private javax.swing.JList<String> summarysShown;
     // End of variables declaration//GEN-END:variables
 }

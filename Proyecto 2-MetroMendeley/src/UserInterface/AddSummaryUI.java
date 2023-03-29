@@ -171,7 +171,7 @@ public class AddSummaryUI extends javax.swing.JFrame {
                 Summary summary = nfile.readSummary(txt);
                 
                 hashTable.add(summary);
-                System.out.println(hashTable.getSize());
+                
                 
                 String[] split = txt.split("~");
                 

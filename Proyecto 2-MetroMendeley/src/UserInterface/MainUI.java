@@ -43,17 +43,12 @@ public class MainUI extends javax.swing.JFrame {
                 for (int i = 0; i < txtFinal.length - 1; i++) {
                     Summary summary = nfile.readSummary(txtFinal[i]);
                     
-                    hashTable.add(summary);
-                    System.out.println(hashTable.getSize());
-                    
+                    hashTable.add(summary);         
                 }
-                
-                String list = summarysList.printList();
-                JOptionPane.showMessageDialog(null, list);
-                     
-                } else {
+      
+            } else {
                 JOptionPane.showMessageDialog(null, "La base de datos se encuentra vacía. Cargue un archivo para agregar información!"); 
-                }
+            }
             
         }catch(Exception e) {
             JOptionPane.showMessageDialog(null, "Error al leer el archivo: " + e);

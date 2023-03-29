@@ -35,7 +35,7 @@ public class HashTable<K, V> {
         }
     }
     
-    public int hashFunction(long key){
+    public int getBucketIndex(long key){
         double R = 0.618034;
         double d;
         int v;
@@ -44,10 +44,33 @@ public class HashTable<K, V> {
         return index;
     }
     
+    public long generateHashCode(String summaryTitle){
+        long key;
+        key = 0; 
+        for (int j = 0; j < Math.min(10, summaryTitle.length()); j++){
+            key = key * 27 + (int) summaryTitle.charAt(j);
+        }
+        if (key<0)
+            key = -key;
+        return key;
+        
+    }
+    public Summary get(String summaryTitle) {
+        long hashCode = generateHashCode(summaryTitle);
+        int bucketIndex = getBucketIndex(hashCode);
+        
+        for (int i = 0; i < bucketArray[bucketIndex].getSize(); i++) {
+            if (bucketArray[bucketIndex].getElement(i).getHashCode() == hashCode && bucketArray[bucketIndex].getElement(i).getKey() == summaryTitle) {
+                Summary summary = (Summary) bucketArray[bucketIndex].getElement(i).getValue();
+                return summary;
+            }
+        }
+        return null;
+    }
     public void add(Summary summary) {
         String key = summary.getTitle();
-        int hashCode = (int) summary.transformTitle();
-        int bucketIndex = hashFunction(hashCode);
+        long hashCode = generateHashCode(key);
+        int bucketIndex = getBucketIndex(hashCode);
         
         if (getBucketArray()[bucketIndex].getHead() != null) {
             Nodo<HashNode<K,V>> head = getBucketArray()[bucketIndex].getHead();
