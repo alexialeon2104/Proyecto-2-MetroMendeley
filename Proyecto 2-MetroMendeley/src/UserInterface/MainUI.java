@@ -43,7 +43,10 @@ public class MainUI extends javax.swing.JFrame {
                 for (int i = 0; i < txtFinal.length - 1; i++) {
                     Summary summary = nfile.readSummary(txtFinal[i]);
                     
-                    hashTable.add(summary);         
+                    if (summary != null) {
+                        hashTable.add(summary);
+                    }
+                             
                 }
       
             } else {

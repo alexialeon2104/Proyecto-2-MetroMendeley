@@ -105,6 +105,13 @@ public class ReadFile {
         //Título
         String title = split[0];
         
+        for (int i = 0; i < summarysList.getSize(); i++) {
+            if(title.equals(summarysList.getElement(i).getTitle())) {
+                JOptionPane.showMessageDialog(null, "Ese resumen ya ha sido agregado previamente");
+                return null;
+            }
+        }
+        
         String[] splitAuthors = split[1].split("\n");
         //Autores
         LinkedList authors = new LinkedList();
