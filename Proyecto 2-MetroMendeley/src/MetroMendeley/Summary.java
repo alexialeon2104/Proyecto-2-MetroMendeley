@@ -39,13 +39,25 @@ public class Summary {
         display += "\n\n";
         
         for (int i = 0; i < keywords.getSize(); i++) {
-            display += keywords.getElement(i) + ": \n";
+            display += keywords.getElement(i) + ": " + Integer.toString(keywordFrequency(keywords.getElement(i))) + " veces\n";
         }
-        return display;
         
+        return display;    
     }
     
-    
+    public int keywordFrequency(String keyword) {
+        int frequency = 0;
+        
+        String[] bodySplit = getBody().split("\n");
+        
+        for (int i = 0; i < bodySplit.length; i++) {
+            if (bodySplit[i].toLowerCase().contains(keyword.toLowerCase())) {
+                frequency++;
+            }
+        }
+        
+        return frequency;
+    }
    
     //Getters and Setters
     public String getTitle() {
