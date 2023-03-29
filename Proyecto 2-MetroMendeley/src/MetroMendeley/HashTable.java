@@ -44,7 +44,31 @@ public class HashTable<K, V> {
         return index;
     }
     
-    
+    public void add(Summary summary) {
+        String key = summary.getTitle();
+        int hashCode = (int) summary.transformTitle();
+        int bucketIndex = hashFunction(hashCode);
+        
+        HashNode<K, V> head = getBucketArray().getElement(bucketIndex);
+        
+        while(head != null) {
+            if (head.getKey().equals(key) && head.getHashCode() == hashCode) {
+                System.out.println("Ya el item esta agregado");
+                return;
+            }
+            head.getNext();
+        }
+        
+        size++;
+        head = getBucketArray().getElement(bucketIndex);
+        
+        HashNode<K, V> newNode = new HashNode<K, V>( (K) key, (V) summary, hashCode);
+        newNode.setNext(head);
+        
+        bucketArray.setElement(bucketIndex, newNode);
+        
+        
+    }
 
     public boolean isEmpty() {
         return getSize() == 0;
@@ -61,6 +85,14 @@ public class HashTable<K, V> {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public LinkedList<HashNode<K, V>> getBucketArray() {
+        return bucketArray;
+    }
+
+    public void setBucketArray(LinkedList<HashNode<K, V>> bucketArray) {
+        this.bucketArray = bucketArray;
     }
     
     

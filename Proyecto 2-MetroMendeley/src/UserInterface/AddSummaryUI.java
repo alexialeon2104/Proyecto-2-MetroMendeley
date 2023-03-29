@@ -6,6 +6,8 @@ package UserInterface;
 
 
 import MetroMendeley.ReadFile;
+import MetroMendeley.Summary;
+import static UserInterface.MainUI.hashTable;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -166,7 +168,10 @@ public class AddSummaryUI extends javax.swing.JFrame {
 
                 String txt = nfile.readTxt(auxpath);
                 
-                nfile.readSummary(txt);
+                Summary summary = nfile.readSummary(txt);
+                
+                hashTable.add(summary);
+                System.out.println(hashTable.getSize());
                 
                 String[] split = txt.split("~");
                 

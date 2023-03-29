@@ -6,6 +6,7 @@
 package UserInterface;
 
 import MetroMendeley.Author;
+import MetroMendeley.HashTable;
 import MetroMendeley.LinkedList;
 import MetroMendeley.ReadFile;
 import MetroMendeley.Summary;
@@ -20,6 +21,7 @@ public class MainUI extends javax.swing.JFrame {
     
     public static LinkedList<Summary> summarysList = new LinkedList();
     public static LinkedList<Author> authorsList = new LinkedList();
+    public static HashTable<String, Summary> hashTable = new HashTable();
     /**
      * Creates new form MainUI
      */
@@ -38,10 +40,16 @@ public class MainUI extends javax.swing.JFrame {
             if (!txt.isBlank()) {
                 String[] txtFinal = txt.split("¬");
                 
-                for (int i = 0; i < txtFinal.length-1; i++) {
+                for (int i = 0; i < txtFinal.length - 1; i++) {
                     Summary summary = nfile.readSummary(txtFinal[i]);
-                    summarysList.addLast(summary);
+                    
+                    hashTable.add(summary);
+                    System.out.println(hashTable.getSize());
+                    
                 }
+                
+                String list = summarysList.printList();
+                JOptionPane.showMessageDialog(null, list);
                      
                 } else {
                 JOptionPane.showMessageDialog(null, "La base de datos se encuentra vacía. Cargue un archivo para agregar información!"); 
