@@ -15,10 +15,10 @@ public class HashNode<K, V>{
     
     private K key; // Codigo a partir del Titulo del resumen
     private V value; // Onjeto resumen
-    private final int hashCode;
+    private final long hashCode;
     private HashNode<K, V> next;
     
-    public HashNode(K key, V value, int hashCode) {
+    public HashNode(K key, V value, long hashCode) {
         this.key = key;
         this.value = value;
         this.hashCode = hashCode;
@@ -51,7 +51,7 @@ public class HashNode<K, V>{
         this.next = next;
     }
 
-    public int getHashCode() {
+    public long getHashCode() {
         return hashCode;
     }
     

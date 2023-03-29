@@ -4,6 +4,8 @@
  */
 package UserInterface;
 
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -40,9 +42,8 @@ public class SearchKeywordsUI extends javax.swing.JFrame {
         back = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         search = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        inputKeyword = new javax.swing.JTextPane();
         jLabel3 = new javax.swing.JLabel();
+        inputKeyword = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -76,16 +77,15 @@ public class SearchKeywordsUI extends javax.swing.JFrame {
                 searchActionPerformed(evt);
             }
         });
-        jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 100, 30));
-
-        jScrollPane1.setViewportView(inputKeyword);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 320, 30));
+        jPanel1.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 100, 30));
 
         jLabel3.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 153));
-        jLabel3.setText("Ingrese la palabra clave");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 250, 20));
+        jLabel3.setText("Seleccione la palabra clave");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 250, 20));
+
+        inputKeyword.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(inputKeyword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 320, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 310));
 
@@ -98,7 +98,17 @@ public class SearchKeywordsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        
+        try {
+            
+            String keyword = (String) inputKeyword.getSelectedItem();
+            if (keyword != null) {
+                SelectKeywordSummaryUI selectKeyword = new SelectKeywordSummaryUI(this, keyword);
+            }     
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar una palabra clave");
+        }
     }//GEN-LAST:event_searchActionPerformed
 
     /**
@@ -145,11 +155,10 @@ public class SearchKeywordsUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton back;
-    private javax.swing.JTextPane inputKeyword;
+    private javax.swing.JComboBox<String> inputKeyword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton search;
     // End of variables declaration//GEN-END:variables
 }

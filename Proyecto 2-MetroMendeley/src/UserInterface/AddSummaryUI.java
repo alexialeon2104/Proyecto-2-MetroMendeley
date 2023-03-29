@@ -170,35 +170,38 @@ public class AddSummaryUI extends javax.swing.JFrame {
                 
                 Summary summary = nfile.readSummary(txt);
                 
-                hashTable.add(summary);
-                System.out.println(hashTable.getSize());
+                if (summary != null) {
+                    hashTable.add(summary);
                 
-                String[] split = txt.split("~");
-                
-                String[] txtSplitAuthors = split[1].split("\n");
-                String[] txtSplitBody = split[2].split("\n");
-                String normal = "";
-                
-                normal += split[0];
-                for (int i = 0; i < txtSplitAuthors.length; i++) {
-                    if(txtSplitAuthors[i].equals("")) {
-                       normal += "Autores" + "\n"; 
-                    }  else {
-                       normal += txtSplitAuthors[i] + "\n"; 
+
+                    String[] split = txt.split("~");
+
+                    String[] txtSplitAuthors = split[1].split("\n");
+                    String[] txtSplitBody = split[2].split("\n");
+                    String normal = "";
+
+                    normal += split[0];
+                    for (int i = 0; i < txtSplitAuthors.length; i++) {
+                        if(txtSplitAuthors[i].equals("")) {
+                           normal += "Autores" + "\n"; 
+                        }  else {
+                           normal += txtSplitAuthors[i] + "\n"; 
+                        }
                     }
+
+                    txtSplitBody[0] = "\n" + "Resumen" + "\n";
+                    normal += txtSplitBody[0];
+                    for (int i = 1; i < txtSplitBody.length; i++) {
+                           normal += txtSplitBody[i] + "\n"; 
+
+                    }
+                    txtArea.setText(normal);
+                    nfile.appendTxt(normal);
+
+                    nfile.appendTxt("¬" + "\n");
+                    JOptionPane.showMessageDialog(null, "Cargado exitoso"); 
                 }
                 
-                txtSplitBody[0] = "\n" + "Resumen" + "\n";
-                normal += txtSplitBody[0];
-                for (int i = 1; i < txtSplitBody.length; i++) {
-                       normal += txtSplitBody[i] + "\n"; 
-                    
-                }
-                txtArea.setText(normal);
-                nfile.appendTxt(normal);
-                
-                nfile.appendTxt("¬" + "\n");
-                JOptionPane.showMessageDialog(null, "Cargado exitoso"); 
             }
         } catch(Exception e) {
                 JOptionPane.showMessageDialog(null, "Ha ocurrido un error en el cargado del archivo: " + e);

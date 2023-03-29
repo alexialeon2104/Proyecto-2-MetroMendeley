@@ -4,6 +4,7 @@
  */
 package UserInterface;
 
+import MetroMendeley.LinkedList;
 import MetroMendeley.Summary;
 import static UserInterface.MainUI.hashTable;
 import static UserInterface.MainUI.summarysList;
@@ -13,25 +14,28 @@ import javax.swing.JOptionPane;
  *
  * @author Rolando
  */
-public class AnalyzeSummaryUI extends javax.swing.JFrame {
+public class SelectKeywordSummaryUI extends javax.swing.JFrame {
    
     
-    public static MainUI v1;
+    public static SearchKeywordsUI v1;
+    public static String keywordStatic;
     /**
      * Creates new form JFileChooser
      * @param v1 (Ventana principal)
      */
-    public AnalyzeSummaryUI(MainUI v1) {
+    public SelectKeywordSummaryUI(SearchKeywordsUI v1, String keywordStatic) {
         initComponents();
         this.v1 = v1;
+        this.keywordStatic = keywordStatic;
+ 
         v1.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         
-        String[] shownSummarys = new String[summarysList.getSize()];
         
-        for (int i = 0; i < summarysList.getSize(); i++) {
-            shownSummarys[i] = summarysList.getElement(i).getTitle();
+        String[] shownSummarys = new String[5];
+        for (int i = 0; i < shownSummarys.length; i++) {
+            shownSummarys[i] = "a";
         }
         
         summarysShown.setListData(shownSummarys);
@@ -49,8 +53,8 @@ public class AnalyzeSummaryUI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         back = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        analyze = new javax.swing.JButton();
+        keywordName = new javax.swing.JLabel();
+        choose = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -74,26 +78,26 @@ public class AnalyzeSummaryUI extends javax.swing.JFrame {
         });
         jPanel1.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 80, 30));
 
-        jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 153));
-        jLabel1.setText("ANALIZAR RESUMEN");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 300, 50));
+        keywordName.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 24)); // NOI18N
+        keywordName.setForeground(new java.awt.Color(255, 255, 153));
+        keywordName.setText("RESÚMENES CON LA PALABRA CLAVE INGRESADA ");
+        jPanel1.add(keywordName, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 650, 50));
 
-        analyze.setBackground(new java.awt.Color(255, 255, 153));
-        analyze.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
-        analyze.setForeground(new java.awt.Color(51, 51, 51));
-        analyze.setText("Analizar");
-        analyze.addActionListener(new java.awt.event.ActionListener() {
+        choose.setBackground(new java.awt.Color(255, 255, 153));
+        choose.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
+        choose.setForeground(new java.awt.Color(51, 51, 51));
+        choose.setText("Mostrar detalles");
+        choose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                analyzeActionPerformed(evt);
+                chooseActionPerformed(evt);
             }
         });
-        jPanel1.add(analyze, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 120, 40));
+        jPanel1.add(choose, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, 140, 40));
 
         jLabel2.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 153));
-        jLabel2.setText("Seleccione un resumen y luego presione el botón \"Analizar\"");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 400, 30));
+        jLabel2.setText("Seleccione un resumen y luego presione el botón \"Mostrar detalles\"");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 440, 30));
 
         summarysShown.setBackground(new java.awt.Color(102, 102, 102));
         summarysShown.setForeground(new java.awt.Color(255, 255, 255));
@@ -106,9 +110,9 @@ public class AnalyzeSummaryUI extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jScrollPane1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 450, 150));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 450, 150));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 400));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -118,19 +122,19 @@ public class AnalyzeSummaryUI extends javax.swing.JFrame {
         v1.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
 
-    private void analyzeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analyzeActionPerformed
+    private void chooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseActionPerformed
        try {
            String selected = summarysShown.getSelectedValue();
            
            Summary summary = hashTable.get(selected);
            
-           ShowAnalysisUI showAnalysis = new ShowAnalysisUI(this, summary);
+           ShowDetailsUI showDetailsUI = new ShowDetailsUI(this, summary);
            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Debe escoger uno de los resúmenes");
         }
         
-    }//GEN-LAST:event_analyzeActionPerformed
+    }//GEN-LAST:event_chooseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,14 +153,38 @@ public class AnalyzeSummaryUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AnalyzeSummaryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelectKeywordSummaryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AnalyzeSummaryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelectKeywordSummaryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AnalyzeSummaryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelectKeywordSummaryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AnalyzeSummaryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelectKeywordSummaryUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -169,19 +197,19 @@ public class AnalyzeSummaryUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AnalyzeSummaryUI(v1).setVisible(true);
+                new SelectKeywordSummaryUI(v1, keywordStatic).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton analyze;
     private javax.swing.JButton back;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton choose;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel keywordName;
     private javax.swing.JList<String> summarysShown;
     // End of variables declaration//GEN-END:variables
 }

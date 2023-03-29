@@ -15,7 +15,7 @@ package MetroMendeley;
 public class Summary {
     
     private String title;
-    private LinkedList<String> authors;
+    private LinkedList<Author> authors;
     private String body;
     private LinkedList<String> keywords;
     private long key;
@@ -26,19 +26,59 @@ public class Summary {
         this.body = body;
         this.keywords = keywords;
     }
-    
-    public long transformTitle(){
-        long key;
-        key = 0; 
-        for (int j = 0; j < Math.min(10,this.getTitle().length()); j++){
-            key = key * 27 + (int) this.getTitle().charAt(j);
-        }
-        if (key<0)
-            key = -key;
-        return key;
+       
+    public String displayAnalysis() {
+        String display = "";
         
+        display += getTitle() + "\n\n";
+        display += "Autores: ";
+        
+        for (int i = 0; i < authors.getSize(); i++) {
+            display += authors.getElement(i).getName() + ", ";
+        }
+        display += "\n\n";
+        
+        for (int i = 0; i < keywords.getSize(); i++) {
+            display += keywords.getElement(i) + ": " + Integer.toString(keywordFrequency(keywords.getElement(i))) + " veces\n";
+        }
+        
+        return display;    
     }
-   
+    
+    public String displayDetails() {
+        String display = "";
+        
+        display += getTitle() + "\n\n";
+        display += "Autores: ";
+        
+        for (int i = 0; i < authors.getSize(); i++) {
+            display += authors.getElement(i).getName() + ", ";
+        }
+        display += "\n\n";
+        
+        display += "Resumen: \n" + getBody() + "\n\n";
+        
+        display += "Palabras Claves: ";
+        for (int i = 0; i < keywords.getSize(); i++) {
+            display += keywords.getElement(i) + ", ";
+        }
+        
+        return display;  
+    }
+    
+    public int keywordFrequency(String keyword) {
+        int frequency = 0;
+        
+        String[] bodySplit = getBody().split("\n");
+        
+        for (int i = 0; i < bodySplit.length; i++) {
+            if (bodySplit[i].toLowerCase().contains(keyword.toLowerCase())) {
+                frequency++;
+            }
+        }
+        
+        return frequency;
+    }
    
     //Getters and Setters
     public String getTitle() {
