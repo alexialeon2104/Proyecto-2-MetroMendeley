@@ -182,6 +182,7 @@ public class LinkedList<T> {
 
     }
     
+    
     public String printList() {
         String sList = "";
         
@@ -203,7 +204,71 @@ public class LinkedList<T> {
         }
         return sList;
     }
+    
+    public T searchElement(T element) {
+        if (isEmpty()) {
+            
+            return null;
 
+        } else {
+            Nodo<T> pointer = getHead();
+            
+            while (pointer != null) {
+                if(pointer.getData() == element) {
+                    return pointer.getData();
+
+                }
+                pointer = pointer.getNext();
+            }
+        }
+        return null;
+    }
+    
+    public void setElement(int index, T element) {
+        Nodo<T> node = new Nodo(element);
+        if(isEmpty() || index == 0) {
+            setHead(node);
+            
+        } else if (index == getSize() - 1) {
+            setTail(node);
+        } else if (index > getSize() - 1) {
+            JOptionPane.showMessageDialog(null, "No se puede ingresar en esa posición");
+        } else {
+            Nodo<T> aux = getHead();
+            int counter = 0;
+            
+            while(counter < index - 1) {
+                aux = aux.getNext();
+                counter++;
+            }
+            
+            Nodo<T> toReplace = aux.getNext();
+            
+            node.setNext(toReplace.getNext());
+            aux.setNext(node);
+            toReplace.setNext(null);
+        }
+    }
+    
+    public Author searchAuthor(String authorName) {
+        if (isEmpty()) {
+            
+            return null;
+
+        } else {
+            Nodo<Author> pointer = getHead();
+            
+            while (pointer != null) {
+                if(pointer.getData().getName().equals(authorName)) {
+                    return pointer.getData();
+
+                }
+                pointer = pointer.getNext();
+            }
+        }
+        return null;
+    }
+    
     public T getElement(int index) {
         if (isEmpty()) {
             return null;
