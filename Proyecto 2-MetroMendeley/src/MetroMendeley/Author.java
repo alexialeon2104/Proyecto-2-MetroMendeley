@@ -11,7 +11,7 @@ package MetroMendeley;
  */
 public class Author {
     private String name;
-    private LinkedList articles;
+    private LinkedList<String> articles;
 
     public Author(String name) {
         this.name = name;

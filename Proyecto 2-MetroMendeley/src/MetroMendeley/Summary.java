@@ -45,6 +45,27 @@ public class Summary {
         return display;    
     }
     
+    public String displayDetails() {
+        String display = "";
+        
+        display += getTitle() + "\n\n";
+        display += "Autores: ";
+        
+        for (int i = 0; i < authors.getSize(); i++) {
+            display += authors.getElement(i).getName() + ", ";
+        }
+        display += "\n\n";
+        
+        display += "Resumen: \n" + getBody() + "\n\n";
+        
+        display += "Palabras Claves: ";
+        for (int i = 0; i < keywords.getSize(); i++) {
+            display += keywords.getElement(i) + ", ";
+        }
+        
+        return display;  
+    }
+    
     public int keywordFrequency(String keyword) {
         int frequency = 0;
         
