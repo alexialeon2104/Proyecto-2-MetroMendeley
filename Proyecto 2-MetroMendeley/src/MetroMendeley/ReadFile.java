@@ -5,6 +5,8 @@
  */
 package MetroMendeley;
 
+import static UserInterface.MainUI.authorsList;
+import static UserInterface.MainUI.summarysList;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -109,7 +111,8 @@ public class ReadFile {
         
         for (int i = 0; i < splitAuthors.length; i++) {
             if (!splitAuthors[i].equals("")) {
-                authors.addLast(splitAuthors[i]);
+                Author author = new Author(splitAuthors[i]);
+                authors.addLast(author);
             }
         }
         
@@ -163,6 +166,22 @@ public class ReadFile {
 
         Summary summary = new Summary(title, authors, body, keywords);
         
+        summarysList.addLast(summary);
+        
+        for (int i = 0; i < summary.getAuthors().getSize(); i++) {
+            Author author = (Author) summary.getAuthors().getElement(i);
+            
+            if (authorsList.searchAuthor(author.getName()) == null) {
+               authorsList.addLast(author);
+            } else {
+              Author authorExisting = authorsList.searchAuthor(author.getName());
+              authorExisting.addArticle(summary.getTitle());
+            }
+            
+            if (author.getArticles().searchElement(summary.getTitle()) == null) {
+                author.addArticle(summary.getTitle());
+            }    
+        }   
         return summary;
     }
    

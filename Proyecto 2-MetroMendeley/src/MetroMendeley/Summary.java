@@ -31,7 +31,7 @@ public class Summary {
         long key;
         key = 0; 
         for (int j = 0; j < Math.min(10,this.getTitle().length()); j++){
-        key = key * 27 + (int) this.getTitle().charAt(j);
+            key = key * 27 + (int) this.getTitle().charAt(j);
         }
         if (key<0)
             key = -key;

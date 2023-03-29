@@ -43,6 +43,8 @@ public class HashTable<K, V> {
         int index = (int) (this.capacity * d);
         return index;
     }
+    
+    
 
     public boolean isEmpty() {
         return getSize() == 0;
@@ -51,6 +53,14 @@ public class HashTable<K, V> {
     //Getters and Setters
     public int getSize() {
         return size;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
     
     

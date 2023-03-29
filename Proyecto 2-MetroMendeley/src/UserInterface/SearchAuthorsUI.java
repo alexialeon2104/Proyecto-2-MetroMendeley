@@ -4,6 +4,12 @@
  */
 package UserInterface;
 
+import MetroMendeley.Author;
+import MetroMendeley.LinkedList;
+import static UserInterface.MainUI.authorsList;
+import static UserInterface.MainUI.summarysList;
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -14,6 +20,7 @@ public class SearchAuthorsUI extends javax.swing.JFrame {
    
     
     public static SearchSummaryUI v1;
+    
     /**
      * Creates new form JFileChooser
      * @param v1 (Ventana principal)
@@ -25,6 +32,12 @@ public class SearchAuthorsUI extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         
+        String[] shownAuthors = new String[authorsList.getSize()];
+        for (int i = 0; i < authorsList.getSize(); i++) {
+            shownAuthors[i] = authorsList.getElement(i).getName();
+        }
+        
+        authorNames.setModel(new javax.swing.DefaultComboBoxModel(shownAuthors));
     }
     
     /**
@@ -41,7 +54,7 @@ public class SearchAuthorsUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         search = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        authorNames = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -82,8 +95,8 @@ public class SearchAuthorsUI extends javax.swing.JFrame {
         jLabel3.setText("Seleccione el Autor");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 250, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 250, 30));
+        authorNames.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(authorNames, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 250, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 310));
 
@@ -96,7 +109,13 @@ public class SearchAuthorsUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        
+        if (authorsList.searchAuthor((String) authorNames.getSelectedItem()) != null) {
+            Author author = authorsList.searchAuthor((String) authorNames.getSelectedItem());
+            
+            String articles = author.getArticles().printList();
+            
+            JOptionPane.showMessageDialog(null, articles);
+        }
     }//GEN-LAST:event_searchActionPerformed
 
     /**
@@ -150,8 +169,8 @@ public class SearchAuthorsUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> authorNames;
     private javax.swing.JButton back;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

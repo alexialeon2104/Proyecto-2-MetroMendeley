@@ -5,6 +5,7 @@
  */
 package UserInterface;
 
+import MetroMendeley.Author;
 import MetroMendeley.LinkedList;
 import MetroMendeley.ReadFile;
 import MetroMendeley.Summary;
@@ -17,7 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class MainUI extends javax.swing.JFrame {
     
-    public static LinkedList summarysList = new LinkedList();
+    public static LinkedList<Summary> summarysList = new LinkedList();
+    public static LinkedList<Author> authorsList = new LinkedList();
     /**
      * Creates new form MainUI
      */
@@ -147,7 +149,6 @@ public class MainUI extends javax.swing.JFrame {
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         try {
-            ReadFile nfile = new ReadFile();
         
             JOptionPane.showMessageDialog(null, "Se ha guardado toda la información correctamente! Hasta luego!");
             System.exit(0);

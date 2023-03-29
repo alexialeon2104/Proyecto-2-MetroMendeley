@@ -182,6 +182,7 @@ public class LinkedList<T> {
 
     }
     
+    
     public String printList() {
         String sList = "";
         
@@ -206,7 +207,7 @@ public class LinkedList<T> {
     
     public T searchElement(T element) {
         if (isEmpty()) {
-            JOptionPane.showMessageDialog(null, "The list is empty");
+            
             return null;
 
         } else {
@@ -223,10 +224,25 @@ public class LinkedList<T> {
         return null;
     }
     
-    public String searchAuthor(String author) {
+    public Author searchAuthor(String authorName) {
+        if (isEmpty()) {
+            
+            return null;
+
+        } else {
+            Nodo<Author> pointer = getHead();
+            
+            while (pointer != null) {
+                if(pointer.getData().getName().equals(authorName)) {
+                    return pointer.getData();
+
+                }
+                pointer = pointer.getNext();
+            }
+        }
         return null;
-        
     }
+    
     public T getElement(int index) {
         if (isEmpty()) {
             return null;
