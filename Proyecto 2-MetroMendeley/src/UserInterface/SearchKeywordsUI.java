@@ -4,6 +4,7 @@
  */
 package UserInterface;
 
+import static UserInterface.MainUI.allKeywords;
 import javax.swing.JOptionPane;
 
 
@@ -26,6 +27,13 @@ public class SearchKeywordsUI extends javax.swing.JFrame {
         v1.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
+        
+        String[] shownKeywords = new String[allKeywords.getSize()];
+        for (int i = 0; i < allKeywords.getSize(); i++) {
+            shownKeywords[i] = allKeywords.getElement(i);
+        }
+        
+        inputKeyword.setModel(new javax.swing.DefaultComboBoxModel(shownKeywords));
         
     }
     
