@@ -43,13 +43,9 @@ public class HashTable<K, V> {
         index = (int) (this.capacity * d);
         return index;
         
-    }
-    
-<<<<<<< HEAD
+    }    
 
-=======
->>>>>>> ba933178eff2e5570395c1d0b2d85e9c3636065b
-    public void add(Summary summary) {
+   public void add(Summary summary) {
         String key = summary.getTitle();
         int hashCode = (int) summary.transformTitle();
         int bucketIndex = hashFunction(hashCode);
@@ -71,10 +67,7 @@ public class HashTable<K, V> {
         HashNode<K, V> newNode = new HashNode<K, V>( (K) key, (V) summary, hashCode);
         getBucketArray()[bucketIndex].addLast(newNode);   
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> ba933178eff2e5570395c1d0b2d85e9c3636065b
 
     public boolean isEmpty() {
         return getSize() == 0;
