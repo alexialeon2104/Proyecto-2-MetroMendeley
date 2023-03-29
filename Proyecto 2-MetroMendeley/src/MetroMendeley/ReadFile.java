@@ -105,6 +105,9 @@ public class ReadFile {
         //Título
         String title = split[0];
         
+        if (title.contains("\n")) {
+            title = title.replace("\n", "");
+        }
         for (int i = 0; i < summarysList.getSize(); i++) {
             if(title.equals(summarysList.getElement(i).getTitle())) {
                 JOptionPane.showMessageDialog(null, "Ese resumen ya ha sido agregado previamente");
