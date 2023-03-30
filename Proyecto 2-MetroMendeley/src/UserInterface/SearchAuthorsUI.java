@@ -7,7 +7,6 @@ package UserInterface;
 import MetroMendeley.Author;
 import MetroMendeley.LinkedList;
 import static UserInterface.MainUI.authorsList;
-import static UserInterface.MainUI.summarysList;
 import javax.swing.JOptionPane;
 
 

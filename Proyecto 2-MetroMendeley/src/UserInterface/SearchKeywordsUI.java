@@ -4,9 +4,7 @@
  */
 package UserInterface;
 
-import static UserInterface.MainUI.allKeywords;
 
-import static UserInterface.MainUI.keywordList;
 
 import javax.swing.JOptionPane;
 

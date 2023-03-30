@@ -51,7 +51,9 @@ public class MainUI extends javax.swing.JFrame {
                     
                     if (summary != null) {
                         hashTable.add(summary);
-                        hashTableKeywords.add2(summary);
+                        
+                        hashTableKeywords.addKeyword(summary);
+                        
 
                     }
                              

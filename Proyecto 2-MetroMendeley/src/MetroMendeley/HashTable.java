@@ -105,15 +105,15 @@ public class HashTable<K, V> {
         
         LinkedList<V> summaryList = new LinkedList<>();
         LinkedList <HashNode <K,V>> list = this.bucketArray[bucketIndex];
-        Nodo <HashNode<K,V>> head = list.getHead();
-        
-        if(head == null){
+
+        if(list.getHead() == null){
             return null;
         }
-        
-        while(head != null){
-            summaryList.addLast(head.getData().getValue());
-            head = head.getNext();
+        for (int i = 0; i < list.getSize(); i++) {
+            if (list.getElement(i).getKey() == keyword && list.getElement(i).getHashCode() == hashCode) {
+                summaryList.addLast(list.getElement(i).getValue());
+                    
+            }
         }
         return summaryList;
         
@@ -147,12 +147,13 @@ public class HashTable<K, V> {
     }
     
     
-    public void add2(Summary summary) {
+    public void addKeyword(Summary summary) {
         LinkedList<String> keys = summary.getKeywords();
         
-        for (int i = 0; i > keys.getSize(); i++){
+        for (int i = 0; i< keys.getSize(); i++){
             
             String key = (keys.getElement(i));
+            
             
             long hashCode = generateHashCode(key);
             int bucketIndex = getBucketIndex(hashCode);

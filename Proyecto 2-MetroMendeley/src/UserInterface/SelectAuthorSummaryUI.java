@@ -7,7 +7,6 @@ package UserInterface;
 import MetroMendeley.LinkedList;
 import MetroMendeley.Summary;
 import static UserInterface.MainUI.hashTable;
-import static UserInterface.MainUI.summarysList;
 import javax.swing.JOptionPane;
 
 /**

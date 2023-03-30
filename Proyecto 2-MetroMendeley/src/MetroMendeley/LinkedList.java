@@ -38,6 +38,11 @@ public class LinkedList<T> {
         return head == null;
     }
 
+    /**
+     * Inserta un elemento al principio de la Lista
+     * @param element (Elemento a agregar)
+     * @return Nodo que se agregó
+     */
     public Nodo<T> addFirst(T element) {
         Nodo<T> node = new Nodo(element);
 
@@ -53,7 +58,12 @@ public class LinkedList<T> {
         size++;
         return node;
     }
-
+    
+    /**
+     * Inserta un elemento al final de la Lista
+     * @param element (Elemento a agregar)
+     * @return Nodo que se agregó
+     */
     public Nodo<T> addLast(T element) {
         Nodo<T> node = new Nodo(element);
 
@@ -77,7 +87,13 @@ public class LinkedList<T> {
     public void setTail(Nodo<T> tail) {
         this.tail = tail;
     }
-
+    
+    /**
+     * Inserta un elemento en el índice indicado de la Lista
+     * @param index (Índice en el que se quiere agregar)
+     * @param element (Elemento a agregar)
+     * @return Nodo que se agregó
+     */
     public Nodo<T> addInIndex(int index, T element) {
         Nodo<T> node = new Nodo(element);
 
@@ -109,7 +125,11 @@ public class LinkedList<T> {
         size++;
         return node;
     }
-
+    
+    /**
+     * Elimina el primer elemento de la Lista
+     * @return Nodo eliminado
+     */
     public Nodo<T> deleteFirst() {
 
         if (!isEmpty()) {
@@ -125,6 +145,10 @@ public class LinkedList<T> {
         return null;
     }
 
+    /**
+     * Elimina el último elemento de la Lista
+     * @return Nodo eliminado
+     */
     public Nodo<T> deleteLast() {
 
         if (!isEmpty()) {
@@ -156,6 +180,11 @@ public class LinkedList<T> {
 
     }
 
+    /**
+     * Elimina el elemento de la Lista que se encuentra en el índice indicado
+     * @param index (Índice del elemento que se desea eliminar)
+     * @return Nodo eliminado
+     */
     public Nodo<T> deleteInIndex(int index) {
         if (!isEmpty()) {
             
@@ -186,7 +215,10 @@ public class LinkedList<T> {
 
     }
     
-    
+    /**
+     * Retorna un String con los elementos de la lista arreglados
+     * @return String para imprimir la lista
+     */
     public String printList() {
         String sList = "";
         
@@ -209,6 +241,11 @@ public class LinkedList<T> {
         return sList;
     }
     
+    /**
+     * Busca un elemento dado dentro de la lista
+     * @param element
+     * @return retorna el elemento si lo encontró, sino retorna null
+     */
     public T searchElement(T element) {
         if (isEmpty()) {
             
@@ -254,6 +291,11 @@ public class LinkedList<T> {
         }
     }
     
+    /**
+     * Busca un autor dentro de una lista de Autores
+     * @param authorName
+     * @return el Autor si lo encuentra, sino retorna null
+     */
     public Author searchAuthor(String authorName) {
         if (isEmpty()) {
             
@@ -273,6 +315,11 @@ public class LinkedList<T> {
         return null;    
     }
     
+    /**
+     * Obtiene el elemento de la Lista que se encuentra en el índice indicado
+     * @param index (Índice del elemento que se desea obtener)
+     * @return 
+     */
     public T getElement(int index) {
         if (isEmpty()) {
             return null;
