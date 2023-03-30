@@ -14,7 +14,7 @@ package MetroMendeley;
 public class HashNode<K, V>{
     
     private K key; // Codigo a partir del Titulo del resumen
-    private V value; // Onjeto resumen
+    private V value; // Objeto resumen
     private final long hashCode;
     private HashNode<K, V> next;
     

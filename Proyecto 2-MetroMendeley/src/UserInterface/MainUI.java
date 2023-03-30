@@ -21,7 +21,9 @@ public class MainUI extends javax.swing.JFrame {
     
     public static LinkedList<Summary> summarysList = new LinkedList();
     public static LinkedList<Author> authorsList = new LinkedList();
+    public static LinkedList<String> keywordList = new LinkedList();
     public static HashTable<String, Summary> hashTable = new HashTable();
+    public static HashTable<String, Summary> hashTableKeywords = new HashTable();
     /**
      * Creates new form MainUI
      */
@@ -45,6 +47,8 @@ public class MainUI extends javax.swing.JFrame {
                     
                     if (summary != null) {
                         hashTable.add(summary);
+                        hashTableKeywords.add2(summary);
+
                     }
                              
                 }
