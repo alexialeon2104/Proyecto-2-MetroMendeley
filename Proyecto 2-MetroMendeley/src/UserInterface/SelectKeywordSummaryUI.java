@@ -20,7 +20,7 @@ public class SelectKeywordSummaryUI extends javax.swing.JFrame {
     public static SearchKeywordsUI v1;
     public static String keywordStatic;
     /**
-     * Creates new form JFileChooser
+     * Creates new form SelectKeywordSummaryUI
      * @param v1 (Ventana principal)
      */
     public SelectKeywordSummaryUI(SearchKeywordsUI v1, String keywordStatic) {
@@ -32,18 +32,15 @@ public class SelectKeywordSummaryUI extends javax.swing.JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         try {
-            System.out.println(hashTableKeywords.getSize());
-            LinkedList<Summary> summarysKeyword = hashTableKeywords.filterByKeyword(keywordStatic);
             
-            System.out.println("llego");
-            String s = summarysKeyword.printList();
-            System.out.println(s);
+            LinkedList<Summary> summarysKeyword = hashTableKeywords.filterByKeyword(keywordStatic);
+
             String[] shownSummarys = new String[summarysKeyword.getSize()];
             for (int i = 0; i < shownSummarys.length; i++) {
                 shownSummarys[i] = summarysKeyword.getElement(i).getTitle();
             }
         
-        summarysShown.setListData(shownSummarys);
+            summarysShown.setListData(shownSummarys);
         } catch(Exception e) {
             JOptionPane.showMessageDialog(null, "Second error" + e);
         }

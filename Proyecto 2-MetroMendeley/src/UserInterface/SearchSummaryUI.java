@@ -15,7 +15,7 @@ public class SearchSummaryUI extends javax.swing.JFrame {
     
     public static MainUI v1;
     /**
-     * Creates new form JFileChooser
+     * Creates new form SearchSummaryUI
      * @param v1 (Ventana principal)
      */
     public SearchSummaryUI(MainUI v1) {

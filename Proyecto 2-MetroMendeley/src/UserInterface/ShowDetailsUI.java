@@ -18,7 +18,7 @@ public class ShowDetailsUI extends javax.swing.JFrame {
     public static Summary summarySelected;
     
     /**
-     * Creates new form showAnalysisUI
+     * Creates new form ShowDetailsUI
      * @param v1 (Ventana principal)
      * @param summarySelected
      */

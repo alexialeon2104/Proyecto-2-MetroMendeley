@@ -22,6 +22,8 @@ public class SelectAuthorSummaryUI extends javax.swing.JFrame {
     /**
      * Creates new form JFileChooser
      * @param v1 (Ventana principal)
+     * @param authorsArticleList
+     * @param authorNameStatic
      */
     public SelectAuthorSummaryUI(SearchAuthorsUI v1, LinkedList authorsArticleList, String authorNameStatic) {
         initComponents();

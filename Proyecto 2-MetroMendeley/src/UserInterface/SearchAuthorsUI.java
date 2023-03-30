@@ -21,7 +21,7 @@ public class SearchAuthorsUI extends javax.swing.JFrame {
     public static SearchSummaryUI v1;
     
     /**
-     * Creates new form JFileChooser
+     * Creates new form SearchAuthorsUI
      * @param v1 (Ventana principal)
      */
     public SearchAuthorsUI(SearchSummaryUI v1) {
