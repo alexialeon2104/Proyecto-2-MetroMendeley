@@ -18,7 +18,7 @@ public class AnalyzeSummaryUI extends javax.swing.JFrame {
     
     public static MainUI v1;
     /**
-     * Creates new form JFileChooser
+     * Creates new form AnalyzeSummaryUI
      * @param v1 (Ventana principal)
      */
     public AnalyzeSummaryUI(MainUI v1) {
