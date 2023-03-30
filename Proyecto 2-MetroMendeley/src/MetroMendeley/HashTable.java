@@ -121,7 +121,7 @@ public class HashTable<K, V> {
      public void add2(Summary summary) {
         LinkedList<String> keys = summary.getKeywords();
         
-        for (int i = 0; i > keys.getSize(); i++){
+        for (int i = 0; i < keys.getSize(); i++){
             
         String key = (keys.getElement(i));
         
