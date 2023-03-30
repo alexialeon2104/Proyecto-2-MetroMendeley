@@ -120,9 +120,9 @@ public class ReadFile {
         //Autores
         LinkedList authors = new LinkedList();
         
-        for (int i = 0; i < splitAuthors.length; i++) {
-            if (!splitAuthors[i].equals("")) {
-                Author author = new Author(splitAuthors[i]);
+        for (String splitAuthor : splitAuthors) {
+            if (!splitAuthor.equals("")) {
+                Author author = new Author(splitAuthor);
                 authors.addLast(author);
             }
         }

@@ -266,7 +266,7 @@ public class LinkedList<T> {
                 pointer = pointer.getNext();
             }
         }
-        return null;
+        return null;    
     }
     
     public T getElement(int index) {

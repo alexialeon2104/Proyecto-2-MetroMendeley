@@ -8,6 +8,8 @@ package MetroMendeley;
 /**
  *
  * @author Rolando
+ * @param <K>
+ * @param <V>
  */
 public class HashTable<K, V> {
     
@@ -38,17 +40,20 @@ public class HashTable<K, V> {
     public int getBucketIndex(long key){
         double R = 0.618034;
         double d;
-        int v;
+        int index;
         d = R * key - Math.floor(R * key); // parte decimal
-        int index = (int) (this.capacity * d);
+        index = (int) (this.capacity * d);
         return index;
-    }
+        
+    }    
+
+
     
-    public long generateHashCode(String summaryTitle){
+    public long generateHashCode(String string){
         long key;
         key = 0; 
-        for (int j = 0; j < Math.min(10, summaryTitle.length()); j++){
-            key = key * 27 + (int) summaryTitle.charAt(j);
+        for (int j = 0; j < Math.min(10, string.length()); j++){
+            key = key * 27 + (int) string.charAt(j);
         }
         if (key<0)
             key = -key;
@@ -64,10 +69,32 @@ public class HashTable<K, V> {
                 Summary summary = (Summary) bucketArray[bucketIndex].getElement(i).getValue();
                 return summary;
             }
-        }
+        } 
         return null;
     }
-    public void add(Summary summary) {
+    
+     public LinkedList<V> filterByKeyword(String keyword){
+        long hashCode = generateHashCode(keyword);
+        int bucketIndex = getBucketIndex(hashCode);
+        
+        LinkedList<V> summaryList = new LinkedList<>();
+        LinkedList <HashNode <K,V>> list = this.bucketArray[bucketIndex];
+        Nodo <HashNode<K,V>> head = list.getHead();
+        
+        if(head == null){
+             return null;
+        }
+        
+        while(head != null){
+            summaryList.addLast(head.getData().getValue());
+            head = head.getNext();
+        }
+        return summaryList;
+        
+    }
+    
+     
+     public void add(Summary summary) {
         String key = summary.getTitle();
         long hashCode = generateHashCode(key);
         int bucketIndex = getBucketIndex(hashCode);
@@ -86,9 +113,29 @@ public class HashTable<K, V> {
         
         size++;
 
-        HashNode<K, V> newNode = new HashNode<K, V>( (K) key, (V) summary, hashCode);
+        HashNode<K, V> newNode = new HashNode<>( (K) key, (V) summary, hashCode);
         getBucketArray()[bucketIndex].addLast(newNode);   
     }
+    
+    
+     public void add2(Summary summary) {
+        LinkedList<String> keys = summary.getKeywords();
+        
+        for (int i = 0; i > keys.getSize(); i++){
+            
+        String key = (keys.getElement(i));
+        
+        long hashCode = generateHashCode(key);
+        int bucketIndex = getBucketIndex(hashCode);
+        
+       
+        size++;
+
+        HashNode<K, V> newNode = new HashNode<>( (K) key, (V) summary, hashCode);
+        getBucketArray()[bucketIndex].addLast(newNode); 
+        }
+    }
+
 
     public boolean isEmpty() {
         return getSize() == 0;
