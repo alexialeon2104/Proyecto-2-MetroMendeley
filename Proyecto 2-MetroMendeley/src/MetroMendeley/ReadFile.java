@@ -5,6 +5,7 @@
  */
 package MetroMendeley;
 
+import static UserInterface.MainUI.allKeywords;
 import static UserInterface.MainUI.authorsList;
 import static UserInterface.MainUI.summarysList;
 import java.io.BufferedReader;
@@ -171,6 +172,10 @@ public class ReadFile {
                     keywordsSplitted[i] = keywordsSplitted[i].replace("\n", "");
                 }
                 keywords.addLast(keywordsSplitted[i]);
+                
+                if (allKeywords.searchElement(keywordsSplitted[i]) == null) {
+                    allKeywords.addLast(keywordsSplitted[i]);
+                }
             }  
         }
 
