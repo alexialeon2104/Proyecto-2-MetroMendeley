@@ -110,7 +110,7 @@ public class SearchKeywordsUI extends javax.swing.JFrame {
         try {
             
             String keyword = (String) keywordNames.getSelectedItem();
-            System.out.println(keyword);
+            
             SelectKeywordSummaryUI selectKeyword = new SelectKeywordSummaryUI(this, keyword);
               
         } catch (Exception e) {
