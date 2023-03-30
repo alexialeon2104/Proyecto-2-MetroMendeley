@@ -17,6 +17,10 @@ public class HashTable<K, V> {
     private int capacity;
     private int size;
     
+    /**
+     * Constructor
+     * @param capacity 
+     */
     public HashTable(int capacity) {
         this.bucketArray = new LinkedList[capacity];
         this.capacity = capacity;
@@ -26,7 +30,9 @@ public class HashTable<K, V> {
             bucketArray[i] = new LinkedList();
         }
     }
-    
+    /**
+     * Constructor
+     */
     public HashTable() {
         this.bucketArray = new LinkedList[50];
         this.capacity = 50;
@@ -37,6 +43,11 @@ public class HashTable<K, V> {
         }
     }
     
+    /**
+     * Calcula el índice en el que se debe insertar en el Bucket
+     * @param key
+     * @return Índice a insertar en el Bucket
+     */
     public int getBucketIndex(long key){
         double R = 0.618034;
         double d;
@@ -48,7 +59,11 @@ public class HashTable<K, V> {
     }    
 
 
-    
+    /**
+     * Genera el HashCode de la llave que se le pasa
+     * @param string
+     * @return 
+     */
     public long generateHashCode(String string){
         long key;
         key = 0; 
@@ -60,6 +75,12 @@ public class HashTable<K, V> {
         return key;
         
     }
+    
+    /**
+     * Busca dentro de la HashTable una Key dada
+     * @param summaryTitle
+     * @return El Value de la Key dada
+     */
     public Summary get(String summaryTitle) {
         long hashCode = generateHashCode(summaryTitle);
         int bucketIndex = getBucketIndex(hashCode);
@@ -73,6 +94,11 @@ public class HashTable<K, V> {
         return null;
     }
     
+    /**
+     * Crea una lista con los resúmenes en los que aparece una Palabra Clave dada
+     * @param keyword
+     * @return La lista con los resúmenes de la Palabra Clave dada
+     */
      public LinkedList<V> filterByKeyword(String keyword){
         long hashCode = generateHashCode(keyword);
         int bucketIndex = getBucketIndex(hashCode);
@@ -82,7 +108,7 @@ public class HashTable<K, V> {
         Nodo <HashNode<K,V>> head = list.getHead();
         
         if(head == null){
-             return null;
+            return null;
         }
         
         while(head != null){
@@ -93,7 +119,10 @@ public class HashTable<K, V> {
         
     }
     
-     
+    /**
+     * Agrega un resumen a la Hash Table utilizando como Key el título del mismo
+     * @param summary 
+     */
      public void add(Summary summary) {
         String key = summary.getTitle();
         long hashCode = generateHashCode(key);
@@ -118,25 +147,28 @@ public class HashTable<K, V> {
     }
     
     
-     public void add2(Summary summary) {
+    public void add2(Summary summary) {
         LinkedList<String> keys = summary.getKeywords();
         
         for (int i = 0; i > keys.getSize(); i++){
             
-        String key = (keys.getElement(i));
-        
-        long hashCode = generateHashCode(key);
-        int bucketIndex = getBucketIndex(hashCode);
+            String key = (keys.getElement(i));
+            
+            long hashCode = generateHashCode(key);
+            int bucketIndex = getBucketIndex(hashCode);
         
        
-        size++;
+            size++;
 
-        HashNode<K, V> newNode = new HashNode<>( (K) key, (V) summary, hashCode);
-        getBucketArray()[bucketIndex].addLast(newNode); 
+            HashNode<K, V> newNode = new HashNode<>( (K) key, (V) summary, hashCode);
+            getBucketArray()[bucketIndex].addLast(newNode); 
         }
     }
 
-
+    /**
+     * Función que determina si la Hash Table esta vacía o no
+     * @return Booleano que indica si esta vacío o no
+     */
     public boolean isEmpty() {
         return getSize() == 0;
     }

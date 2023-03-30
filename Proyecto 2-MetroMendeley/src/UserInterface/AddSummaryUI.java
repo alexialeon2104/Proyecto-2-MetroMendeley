@@ -24,34 +24,10 @@ import javax.swing.filechooser.FileSystemView;
  * @author alexi
  */
 public class AddSummaryUI extends javax.swing.JFrame {
-    private void guardarArchivo() {
-        try {
-        
-        String nombre="";
-        javax.swing.JFileChooser file=new javax.swing.JFileChooser();
-        file.showSaveDialog(this);
-        File guarda =file.getSelectedFile();
-
-        if(guarda !=null) {
-         /*guardamos el archivo y le damos el formato directamente,
-          * si queremos que se guarde en formato doc lo definimos como .doc*/
-          PrintWriter pw = new PrintWriter(guarda);
-          pw.print(txtArea.getText());
-          pw.close();
-          JOptionPane.showMessageDialog(null,
-               "El archivo se ha guardado Exitosamente",
-                   "Información",JOptionPane.INFORMATION_MESSAGE);
-          }
-       } catch(IOException ex) {
-         JOptionPane.showMessageDialog(null,
-              "Su archivo no se ha guardado",
-                 "Advertencia",JOptionPane.WARNING_MESSAGE);
-        }
-    }
     
     public static MainUI v1;
     /**
-     * Creates new form JFileChooser
+     * Creates new form AddSummaryUI
      * @param v1 (Ventana principal)
      */
     public AddSummaryUI(MainUI v1) {

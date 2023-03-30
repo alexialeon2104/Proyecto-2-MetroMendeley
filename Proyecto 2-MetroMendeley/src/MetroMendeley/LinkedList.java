@@ -29,7 +29,11 @@ public class LinkedList<T> {
         this.head = this.tail = node;
         size++;
     }
-
+    
+    /**
+     * 
+     * @return Booleano; "true" si la lista está vacía, "false" si posee al menos un elemento
+     */
     public boolean isEmpty() {
         return head == null;
     }

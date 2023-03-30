@@ -7,6 +7,7 @@ package UserInterface;
 import MetroMendeley.LinkedList;
 import MetroMendeley.Summary;
 import static UserInterface.MainUI.hashTable;
+import static UserInterface.MainUI.hashTableKeywords;
 import static UserInterface.MainUI.summarysList;
 import javax.swing.JOptionPane;
 
@@ -31,14 +32,23 @@ public class SelectKeywordSummaryUI extends javax.swing.JFrame {
         v1.setVisible(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        
-        
-        String[] shownSummarys = new String[5];
-        for (int i = 0; i < shownSummarys.length; i++) {
-            shownSummarys[i] = "a";
-        }
+        try {
+            System.out.println(hashTableKeywords.getSize());
+            LinkedList<Summary> summarysKeyword = hashTableKeywords.filterByKeyword(keywordStatic);
+            
+            System.out.println("llego");
+            String s = summarysKeyword.printList();
+            System.out.println(s);
+            String[] shownSummarys = new String[summarysKeyword.getSize()];
+            for (int i = 0; i < shownSummarys.length; i++) {
+                shownSummarys[i] = summarysKeyword.getElement(i).getTitle();
+            }
         
         summarysShown.setListData(shownSummarys);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Second error" + e);
+        }
+        
        
     }
     

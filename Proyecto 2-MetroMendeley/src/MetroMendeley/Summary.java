@@ -20,13 +20,24 @@ public class Summary {
     private LinkedList<String> keywords;
     private long key;
 
+    /**
+     * Constructor
+     * @param title
+     * @param authors
+     * @param body
+     * @param keywords 
+     */
     public Summary(String title, LinkedList authors, String body, LinkedList keywords) {
         this.title = title;
         this.authors = authors;
         this.body = body;
         this.keywords = keywords;
     }
-       
+    
+    /**
+     * Arma un String con lo requerido en el análisis del Resumen
+     * @return String con el formato del análisis
+     */
     public String displayAnalysis() {
         String display = "";
         
@@ -45,6 +56,10 @@ public class Summary {
         return display;    
     }
     
+    /**
+     * Arma un String con los detalles de un Resumen
+     * @return String con la información del Resumen
+     */
     public String displayDetails() {
         String display = "";
         
@@ -66,6 +81,11 @@ public class Summary {
         return display;  
     }
     
+    /**
+     * Determina la frecuencia de cada palabra clave en un Resumen
+     * @param keyword
+     * @return El número de veces que aparece la palabra clave en el cuerpo del Resumen
+     */
     public int keywordFrequency(String keyword) {
         int frequency = 0;
         

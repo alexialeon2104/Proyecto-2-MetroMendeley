@@ -21,7 +21,7 @@ public class SearchKeywordsUI extends javax.swing.JFrame {
     
     public static SearchSummaryUI v1;
     /**
-     * Creates new form JFileChooser
+     * Creates new form SearchSummaryUI
      * @param v1 (Ventana principal)
      */
     public SearchKeywordsUI(SearchSummaryUI v1) {
@@ -112,13 +112,11 @@ public class SearchKeywordsUI extends javax.swing.JFrame {
         try {
             
             String keyword = (String) keywordNames.getSelectedItem();
-            if (keyword != null) {
-                SelectKeywordSummaryUI selectKeyword = new SelectKeywordSummaryUI(this, keyword);
-            }     
-            
-            
+            System.out.println(keyword);
+            SelectKeywordSummaryUI selectKeyword = new SelectKeywordSummaryUI(this, keyword);
+              
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar una palabra clave");
+            JOptionPane.showMessageDialog(null, "Debe ingresar una palabra clave " + e);
         }
     }//GEN-LAST:event_searchActionPerformed
 

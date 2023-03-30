@@ -18,6 +18,12 @@ public class HashNode<K, V>{
     private final long hashCode;
     private HashNode<K, V> next;
     
+    /**
+     * Constructor
+     * @param key
+     * @param value
+     * @param hashCode 
+     */
     public HashNode(K key, V value, long hashCode) {
         this.key = key;
         this.value = value;

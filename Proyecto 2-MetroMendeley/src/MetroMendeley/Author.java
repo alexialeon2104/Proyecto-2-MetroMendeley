@@ -18,10 +18,15 @@ public class Author {
         this.articles = new LinkedList();
     }
     
+    /**
+     * Agrega un resumen a la lista de resúmenes del Autor
+     * @param summaryName 
+     */
     public void addArticle(String summaryName) {
         getArticles().addLast(summaryName);
     }
 
+    //Getters and Setters
     public String getName() {
         return name;
     }
